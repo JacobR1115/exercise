@@ -42,6 +42,21 @@ def after_request(response):
 def homepage():
     return render_template("homepage.html")
 
+@app.route("/planner", methods=["GET", "POST"])
+@login_required
+def planner():
+    if request.method == "POST":
+        if not db.execute("SELECT * FROM plan WHERE userID = ?", session["user_id"]):
+            for i in range(7):
+                db.execute("INSERT INTO plan (userID, dayID, exercise1, exercise2, exercise3, exercise4, exercise5, exercise6, exercise7, exercise8, exercise9, exercise10) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", session["user_id"], i + 1, request.form.get(f"exercise1.{i + 1}"), request.form.get(f"exercise2.{i + 1}"), request.form.get(f"exercise3.{i + 1}"), request.form.get(f"exercise4.{i + 1}"), request.form.get(f"exercise5.{i + 1}"), request.form.get(f"exercise6.{i + 1}"), request.form.get(f"exercise7.{i + 1}"), request.form.get(f"exercise8.{i + 1}"), request.form.get(f"exercise9.{i + 1}"), request.form.get(f"exercise10.{i + 1}"))
+        else:
+            for i in range(7):
+                db.execute("UPDATE plan SET exercise1 = ?, exercise2 = ?, exercise3 = ?, exercise4 = ?, exercise5 = ?, exercise6 = ?, exercise7 = ?, exercise8 = ?, exercise9 = ?, exercise10 = ? WHERE userID = ? AND dayID = ?", request.form.get(f"exercise1.{i + 1}"), request.form.get(f"exercise2.{i + 1}"), request.form.get(f"exercise3.{i + 1}"), request.form.get(f"exercise4.{i + 1}"), request.form.get(f"exercise5.{i + 1}"), request.form.get(f"exercise6.{i + 1}"), request.form.get(f"exercise7.{i + 1}"), request.form.get(f"exercise8.{i + 1}"), request.form.get(f"exercise9.{i + 1}"), request.form.get(f"exercise10.{i + 1}"), session["user_id"], i + 1)
+
+        return redirect("/")
+    else:
+        return render_template("planner.html")
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""

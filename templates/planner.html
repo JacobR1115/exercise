@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Create New Exercise Plan
+{% endblock %}
+
+{% block main %} 
+    <form action="/planner" method="post">
+        <h5>Exercises can be left blank</h5>
+        {% for n in range(7) %}
+            <h3>Day {{ n + 1 }}</h3>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="exercise1.{{ n + 1 }}" name="exercise1.{{ n + 1 }}" placeholder="Exercise One" type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="exercise2.{{ n + 1 }}" name="exercise2.{{ n + 1 }}" placeholder="Exercise Two" type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="exercise3.{{ n + 1 }}" name="exercise3.{{ n + 1 }}" placeholder="Exercise Three" type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="exercise4.{{ n + 1 }}" name="exercise4.{{ n + 1 }}" placeholder="Exercise Four" type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="exercise5.{{ n + 1 }}" name="exercise5.{{ n + 1 }}" placeholder="Exercise Five" type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="exercise6.{{ n + 1 }}" name="exercise6.{{ n + 1 }}" placeholder="Exercise Six" type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="exercise7.{{ n + 1 }}" name="exercise7.{{ n + 1 }}" placeholder="Exercise Seven" type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="exercise8.{{ n + 1 }}" name="exercise8.{{ n + 1 }}" placeholder="Exercise Eight" type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="exercise9.{{ n + 1 }}" name="exercise9.{{ n + 1 }}" placeholder="Exercise Nine" type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="exercise10.{{ n + 1 }}" name="exercise10.{{ n + 1 }}" placeholder="Exercise Ten" type="text">
+                </div>
+        {% endfor %}
+            <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+{% endblock %}
